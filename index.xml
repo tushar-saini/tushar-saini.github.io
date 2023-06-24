@@ -176,6 +176,77 @@
     </item>
     
     <item>
+      <title>Replenishment Planning</title>
+      <link>https://tushar-saini.github.io/post/replenishment-planning/</link>
+      <pubDate>Fri, 01 Jul 2022 20:00:00 +0530</pubDate>
+      <guid>https://tushar-saini.github.io/post/replenishment-planning/</guid>
+      <description>&lt;h4 id=&#34;problem-statement&#34;&gt;Problem Statement&lt;/h4&gt;
+&lt;p&gt;Planning inventory and transportation is a significant challenge for enterprises. Balancing the right amount of inventory is crucial, as over-planning can lead to capital, labor, and space being tied up, along with an increased risk of wastage, particularly for products with limited shelf life. On the other hand, under-planning may result in stock-outs and significant sales losses. Achieving this balance is essential. One approach to tackle this is adopting a demand-driven approach to replenishment planning. To forecast demand, various factors such as historical trends, festivals, seasons, promotions, and more can be taken into account. However, discussing the intricacies of demand forecasting is beyond the scope of this topic, and warrants a dedicated article of its own.&lt;/p&gt;
+&lt;p&gt;In this article, we will explore replenishment planning, which encompasses methods for optimizing inventory levels across different levels of the supply chain. The primary objective is to ensure that each level maintains sufficient stock to meet the demands of its downstream counterparts and that with minimal cost.&lt;/p&gt;
+&lt;p&gt;Once we have the end node demand of products, we can start out to find the best optimal solution which minimizes the transportation costs, reduce inventory days, reduce stocks-out. However, finding the optimal solution involves considering several constraints. These constraints include factors such as the available types of trucks between nodes, the weight and volume capacity of trucks, warehouse capacities, and the optimal path between nodes (especially in cases where overlapping regional warehouses can fulfill the demand).&lt;/p&gt;
+&lt;h4 id=&#34;solution&#34;&gt;Solution&lt;/h4&gt;
+&lt;p&gt;Given these constraints, there can be numerous permutations and combinations that satisfy the conditions. However, identifying the best optimal solution is a challenging task due to the large number of possibilities. It often requires sophisticated optimization techniques and algorithms to evaluate and select the most efficient configuration that minimizes costs, optimizes inventory levels, and ensures timely order fulfillment.&lt;/p&gt;
+&lt;p&gt;In our use case, we employed mixed-integer linear programming to address the optimization challenge. This programming paradigm involves formulating an objective function, which can be either a cost function to minimize or a reward function to maximize, along with a set of constraints. The solver then seeks the optimal solution that satisfies these constraints while optimizing the objective function. Mixed-integer linear programming allows for both continuous and discrete decision variables, enabling us to model real-world scenarios with binary or integer requirements.&lt;/p&gt;
+&lt;p&gt;We used gurobi solver wrapped in a python script and deployed as a microservice on server. The solver consumed various inputs such including product demand at end nodes, box volume and weight, warehouse capacities, available truck types between nodes, cost of each truck type per kilometer, distances between nodes, truck capacities, and other relevant factors. By leveraging this comprehensive set of inputs, we generated an optimal replenishment allocation plan and transport plan at each node.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Digital Twin For Warehouse Resource Planning</title>
+      <link>https://tushar-saini.github.io/post/digital-twin/</link>
+      <pubDate>Tue, 01 Feb 2022 20:00:00 +0530</pubDate>
+      <guid>https://tushar-saini.github.io/post/digital-twin/</guid>
+      <description>&lt;h4 id=&#34;problem-statement&#34;&gt;Problem Statement&lt;/h4&gt;
+&lt;p&gt;In today&amp;rsquo;s digital age, e-commerce companies are constantly seeking ways to gain an edge over their competitors. With customers expecting faster and more convenient services, companies are offering increasingly attractive options. One such offering is one-day or same-day delivery. While these services are certainly attractive to customers, they put enormous strains on their delivery partners.&lt;/p&gt;
+&lt;p&gt;Many small e-commerce players rely on third-party aggregators to handle their logistics operations. These companies establish a Service Level Agreement (SLA) that defines certain Key Performance Indicators (KPIs). When these KPIs are unmet, penalty is levied by merchants. As a result, companies make every effort to avoid breaching their terms of SLAs.&lt;/p&gt;
+&lt;p&gt;In a warehouse, one such KPIs is total order cycle time, i.e., the average time it takes for an order to get shipped, starting from the moment when the order is received. Once an order is placed at a merchant site, a corresponding request is generated in a warehouse where it goes through multiple stages. The order needs to be located and picked from its rack, which is usually done in batches to save time. However, this raises multiple &amp;ldquo;what if&amp;rdquo; scenarios. For example, what if some customers have overlapping products? What if only one order was placed? What if we have multiple items that are of different categories and require different packaging? These complexities are generally handled by the warehouse manager, by maintaining Standard Operating Procedures. After the order is picked, it needs to be sorted, packaged, and prepared for courier pickup. These processes require human effort, and the manager needs to manage resources at each stage based on the order flow.&lt;/p&gt;
+&lt;p&gt;Although future order flow can be estimated by analyzing historical data and resources can be planned based on these forecast, but there can still be unexpected events that can compromise the entire process. So it is of utmost importance to have tools that can help manage warehouse resource planning in advance. The solution should be able to simulate all possible scenarios and generate resource allocation plan. It should also be able to keep up with the physical changes and changes in SOPs, for example if an improvement is made in the warehouse to reduce pick up time, it should reflect in the system.&lt;/p&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  id=&#34;figure-warehouse-process-picture-generated-by-dallehttpslabsopenaicom&#34;&gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;screen reader text&#34; srcset=&#34;
+               /media/digital-twin_hu6b72f5e673fde4e48c208d27c3ab6009_934793_3570d85aa59f85a441126be85517add5.webp 400w,
+               /media/digital-twin_hu6b72f5e673fde4e48c208d27c3ab6009_934793_c56b63ca6a7639d2583bde427c38be49.webp 760w,
+               /media/digital-twin_hu6b72f5e673fde4e48c208d27c3ab6009_934793_1200x1200_fit_q75_h2_lanczos_3.webp 1200w&#34;
+               src=&#34;https://tushar-saini.github.io/media/digital-twin_hu6b72f5e673fde4e48c208d27c3ab6009_934793_3570d85aa59f85a441126be85517add5.webp&#34;
+               width=&#34;760&#34;
+               height=&#34;760&#34;
+               loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;figcaption&gt;
+      Warehouse process. Picture generated by &lt;a href=&#34;https://labs.openai.com/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Dalle&lt;/a&gt;
+    &lt;/figcaption&gt;&lt;/figure&gt;
+&lt;/p&gt;
+&lt;h4 id=&#34;solution&#34;&gt;Solution&lt;/h4&gt;
+&lt;p&gt;Due to the presence of multiple random factors that are connected to various uncertain events a deterministic solution would not suffice. These uncertainties introduce a level of complexity that makes it challenging to predict whether the Service Level Agreement (SLA) will be achieved or breached. To tackle this, a modeling approach known as Monte Carlo simulation can be utilized.&lt;/p&gt;
+&lt;p&gt;Monte Carlo simulation is a technique that involves running numerous iterations of a model by randomly sampling input values from the probability distributions. In the context of our digital twin, Monte Carlo simulation can help generate a range of possible outcomes for meeting SLAs by considering the variability and uncertainty in factors such as order flow, time taken by workers to complete each task, variability in operational hours, and other relevant variables.  Our ultimate goal is to achieve SLAs even in worst case scenarios.&lt;/p&gt;
+&lt;p&gt;Other application of the tool is to simulate What if? scenarios. What if we have X number of resources and Y number of order, how should we distribute these X at each assembly to minimize order cycle time? What if we have very large Y orders, how many resources we need to acheive SLAs? Various permutations and combinations can be input to the model and based on these inputs other dependent variables can be calculated to maximize or minimize any specific metrics.&lt;/p&gt;
+&lt;h4 id=&#34;methodology&#34;&gt;Methodology&lt;/h4&gt;
+&lt;p&gt;Just like in any problem within the data science field, the initial step involves curating and vetting the data in our system. Ensuring the quality and reliability of the data is crucial for accurate analysis and modeling. After the data is vetted, we explored it from various angles. Specifically, for analyzing the historical order pattern, we examined factors such as the frequency of orders based on the day of the week, week of the month, holiday season, and product type. This analysis guided our selection of features for modeling the probability density distribution.&lt;/p&gt;
+&lt;p&gt;While opting for a Gaussian Distribution may simplify the process, it is not always the most suitable estimator. In our case, we found that a Gaussian Distribution was not a good fit for our data. Consequently, we employed Kernel Density Estimate, a non-parametric method for estimating the probability distribution function. This approach allowed us to capture the underlying probability distribution accurately.&lt;/p&gt;
+&lt;p&gt;A similar approach could be used to estimate other random factors, like the time taken by resources to pick up specific types of orders, sort multi-batch orders, pack different kinds of items, and so on. This was again analyzed on multiple longtitudinal aspects. During our analysis, we discovered that even the day of the week has an impact on resource performances. This finding highlights the importance of considering various temporal aspects when examining resource efficiency and identifying patterns that can influence operational performance.&lt;/p&gt;
+&lt;p&gt;Once all the random factors were modeled, we leveraged Monte Carlo simulation to draw independent samples from the respective probability distributions. This simulation allowed us to replicate and analyze all stages of the warehouses in a controlled environment.&lt;/p&gt;
+&lt;p&gt;The iterative nature of the simulation enabled us to generate comprehensive reports for worst-case, average-case, and best-case scenarios. These reports included valuable insights such as resource requirements, productivity, on-time shipping, average order cycle time and other key performance indicators (KPIs).&lt;/p&gt;
+&lt;h4 id=&#34;result&#34;&gt;Result&lt;/h4&gt;
+&lt;p&gt;By examining the results from the simulations, the warehouse managers can gain a holistic view of potential outcomes and be able to plan their activities accordingly. This information can be proved instrumental in optimizing resource allocation, enhancing operational efficiency, and making informed decisions to meet the desired objectives.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
       <title>Modelling Particulate Matter Using Multivariate and Multistep Recurrent Neural Networks</title>
       <link>https://tushar-saini.github.io/publication/frontiers-2021/</link>
       <pubDate>Thu, 09 Dec 2021 22:33:42 +0530</pubDate>
@@ -197,85 +268,6 @@
       <pubDate>Thu, 11 Feb 2021 12:19:50 +0530</pubDate>
       <guid>https://tushar-saini.github.io/publication/iacc-2021/</guid>
       <description></description>
-    </item>
-    
-    <item>
-      <title>Welcome to Wowchemy, the website builder for Hugo</title>
-      <link>https://tushar-saini.github.io/post/getting-started/</link>
-      <pubDate>Sun, 13 Dec 2020 00:00:00 +0000</pubDate>
-      <guid>https://tushar-saini.github.io/post/getting-started/</guid>
-      <description>&lt;h2 id=&#34;overview&#34;&gt;Overview&lt;/h2&gt;
-&lt;ol&gt;
-&lt;li&gt;The Wowchemy website builder for Hugo, along with its starter templates, is designed for professional creators, educators, and teams/organizations - although it can be used to create any kind of site&lt;/li&gt;
-&lt;li&gt;The template can be modified and customised to suit your needs. It&amp;rsquo;s a good platform for anyone looking to take control of their data and online identity whilst having the convenience to start off with a &lt;strong&gt;no-code solution (write in Markdown and customize with YAML parameters)&lt;/strong&gt; and having &lt;strong&gt;flexibility to later add even deeper personalization with HTML and CSS&lt;/strong&gt;&lt;/li&gt;
-&lt;li&gt;You can work with all your favourite tools and apps with hundreds of plugins and integrations to speed up your workflows, interact with your readers, and much more&lt;/li&gt;
-&lt;/ol&gt;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-&lt;figure  id=&#34;figure-the-template-is-mobile-first-with-a-responsive-design-to-ensure-that-your-site-looks-stunning-on-every-device&#34;&gt;
-  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
-    &lt;div class=&#34;w-100&#34; &gt;&lt;img src=&#34;https://raw.githubusercontent.com/wowchemy/wowchemy-hugo-modules/master/academic.png&#34; alt=&#34;The template is mobile first with a responsive design to ensure that your site looks stunning on every device.&#34; loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
-  &lt;/div&gt;&lt;figcaption&gt;
-      The template is mobile first with a responsive design to ensure that your site looks stunning on every device.
-    &lt;/figcaption&gt;&lt;/figure&gt;
-&lt;h2 id=&#34;get-started&#34;&gt;Get Started&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;👉 &lt;a href=&#34;https://wowchemy.com/templates/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;&lt;strong&gt;Create a new site&lt;/strong&gt;&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;📚 &lt;a href=&#34;https://wowchemy.com/docs/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;&lt;strong&gt;Personalize your site&lt;/strong&gt;&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;💬 &lt;a href=&#34;https://discord.gg/z8wNYzb&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Chat with the &lt;strong&gt;Wowchemy community&lt;/strong&gt;&lt;/a&gt; or &lt;a href=&#34;https://discourse.gohugo.io&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;&lt;strong&gt;Hugo community&lt;/strong&gt;&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;🐦 Twitter: &lt;a href=&#34;https://twitter.com/wowchemy&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;@wowchemy&lt;/a&gt; &lt;a href=&#34;https://twitter.com/GeorgeCushen&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;@GeorgeCushen&lt;/a&gt; &lt;a href=&#34;https://twitter.com/search?q=%23MadeWithWowchemy&amp;amp;src=typed_query&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;#MadeWithWowchemy&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;💡 &lt;a href=&#34;https://github.com/wowchemy/wowchemy-hugo-modules/issues&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Request a &lt;strong&gt;feature&lt;/strong&gt; or report a &lt;strong&gt;bug&lt;/strong&gt; for &lt;em&gt;Wowchemy&lt;/em&gt;&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;⬆️ &lt;strong&gt;Updating Wowchemy?&lt;/strong&gt; View the &lt;a href=&#34;https://wowchemy.com/docs/hugo-tutorials/update/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Update Tutorial&lt;/a&gt; and &lt;a href=&#34;https://wowchemy.com/updates/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Release Notes&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id=&#34;crowd-funded-open-source-software&#34;&gt;Crowd-funded open-source software&lt;/h2&gt;
-&lt;p&gt;To help us develop this template and software sustainably under the MIT license, we ask all individuals and businesses that use it to help support its ongoing maintenance and development via sponsorship.&lt;/p&gt;
-&lt;h3 id=&#34;-click-here-to-become-a-sponsor-and-help-support-wowchemys-future-httpswowchemycomplans&#34;&gt;&lt;a href=&#34;https://wowchemy.com/plans/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;❤️ Click here to become a sponsor and help support Wowchemy&amp;rsquo;s future ❤️&lt;/a&gt;&lt;/h3&gt;
-&lt;p&gt;As a token of appreciation for sponsoring, you can &lt;strong&gt;unlock &lt;a href=&#34;https://wowchemy.com/plans/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;these&lt;/a&gt; awesome rewards and extra features 🦄✨&lt;/strong&gt;&lt;/p&gt;
-&lt;h2 id=&#34;ecosystem&#34;&gt;Ecosystem&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;&lt;a href=&#34;https://github.com/wowchemy/hugo-academic-cli&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Hugo Academic CLI&lt;/a&gt;:&lt;/strong&gt; Automatically import publications from BibTeX&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id=&#34;inspiration&#34;&gt;Inspiration&lt;/h2&gt;
-&lt;p&gt;&lt;a href=&#34;https://academic-demo.netlify.com/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Check out the latest &lt;strong&gt;demo&lt;/strong&gt;&lt;/a&gt; of what you&amp;rsquo;ll get in less than 10 minutes, or &lt;a href=&#34;https://wowchemy.com/user-stories/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;view the &lt;strong&gt;showcase&lt;/strong&gt;&lt;/a&gt; of personal, project, and business sites.&lt;/p&gt;
-&lt;h2 id=&#34;features&#34;&gt;Features&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;Page builder&lt;/strong&gt; - Create &lt;em&gt;anything&lt;/em&gt; with &lt;a href=&#34;https://wowchemy.com/docs/page-builder/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;&lt;strong&gt;widgets&lt;/strong&gt;&lt;/a&gt; and &lt;a href=&#34;https://wowchemy.com/docs/content/writing-markdown-latex/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;&lt;strong&gt;elements&lt;/strong&gt;&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Edit any type of content&lt;/strong&gt; - Blog posts, publications, talks, slides, projects, and more!&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Create content&lt;/strong&gt; in &lt;a href=&#34;https://wowchemy.com/docs/content/writing-markdown-latex/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;&lt;strong&gt;Markdown&lt;/strong&gt;&lt;/a&gt;, &lt;a href=&#34;https://wowchemy.com/docs/import/jupyter/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;&lt;strong&gt;Jupyter&lt;/strong&gt;&lt;/a&gt;, or &lt;a href=&#34;https://wowchemy.com/docs/install-locally/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;&lt;strong&gt;RStudio&lt;/strong&gt;&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Plugin System&lt;/strong&gt; - Fully customizable &lt;a href=&#34;https://wowchemy.com/docs/customization/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;&lt;strong&gt;color&lt;/strong&gt; and &lt;strong&gt;font themes&lt;/strong&gt;&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Display Code and Math&lt;/strong&gt; - Code highlighting and &lt;a href=&#34;https://en.wikibooks.org/wiki/LaTeX/Mathematics&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;LaTeX math&lt;/a&gt; supported&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Integrations&lt;/strong&gt; - &lt;a href=&#34;https://analytics.google.com&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Google Analytics&lt;/a&gt;, &lt;a href=&#34;https://disqus.com&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Disqus commenting&lt;/a&gt;, Maps, Contact Forms, and more!&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Beautiful Site&lt;/strong&gt; - Simple and refreshing one page design&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Industry-Leading SEO&lt;/strong&gt; - Help get your website found on search engines and social media&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Media Galleries&lt;/strong&gt; - Display your images and videos with captions in a customizable gallery&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Mobile Friendly&lt;/strong&gt; - Look amazing on every screen with a mobile friendly version of your site&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Multi-language&lt;/strong&gt; - 34+ language packs including English, 中文, and Português&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Multi-user&lt;/strong&gt; - Each author gets their own profile page&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Privacy Pack&lt;/strong&gt; - Assists with GDPR&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Stand Out&lt;/strong&gt; - Bring your site to life with animation, parallax backgrounds, and scroll effects&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;One-Click Deployment&lt;/strong&gt; - No servers. No databases. Only files.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id=&#34;themes&#34;&gt;Themes&lt;/h2&gt;
-&lt;p&gt;Wowchemy and its templates come with &lt;strong&gt;automatic day (light) and night (dark) mode&lt;/strong&gt; built-in. Alternatively, visitors can choose their preferred mode - click the moon icon in the top right of the &lt;a href=&#34;https://academic-demo.netlify.com/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Demo&lt;/a&gt; to see it in action! Day/night mode can also be disabled by the site admin in &lt;code&gt;params.toml&lt;/code&gt;.&lt;/p&gt;
-&lt;p&gt;&lt;a href=&#34;https://wowchemy.com/docs/customization&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Choose a stunning &lt;strong&gt;theme&lt;/strong&gt; and &lt;strong&gt;font&lt;/strong&gt;&lt;/a&gt; for your site. Themes are fully customizable.&lt;/p&gt;
-&lt;h2 id=&#34;license&#34;&gt;License&lt;/h2&gt;
-&lt;p&gt;Copyright 2016-present &lt;a href=&#34;https://georgecushen.com&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;George Cushen&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;Released under the &lt;a href=&#34;https://github.com/wowchemy/wowchemy-hugo-modules/blob/master/LICENSE.md&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;MIT&lt;/a&gt; license.&lt;/p&gt;
-</description>
     </item>
     
     <item>
